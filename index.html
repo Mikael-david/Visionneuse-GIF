@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Mikaël David">
+  <title>GIF Frame Viewer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>Visionneuse GIF</h1>
+
+      <button class="upload-btn" id="uploadBtn">
+        <img src="felix.gif"> Glissez ou choisissez un GIF
+      </button>
+      <input type="file" id="fileInput" accept="image/gif" hidden>
+
+      <button id="themeToggle">
+        <div id="myIcon"></div>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div id="fileInfo"></div>
+
+    <!-- lecteur GIF -->
+
+    <canvas id="playerCanvas"></canvas>
+
+    <div id="playerControls">
+      <button id="prevFrame">⏮</button>
+      <button id="playPause">⏸</button>
+      <button id="nextFrame">⏭</button>
+    </div>
+
+    <div id="timelineContainer" style="display:none">
+      <input type="range" id="timeline" min="0" max="0" value="0" step="1">
+      <div id="timelineInfo">Frame 0</div>
+    </div>
+
+    <button id="captureBtn">📸 Télécharger les séquences</button>
+    <button id="copyBtn">📋 Copier dans le presse papier</button>
+
+    <div id="frames"></div>
+  </main>
+
+  <footer class="signature">
+    © 2026 — Mikaël
+  </footer>
+
+
+  <script src="lottie.min.js"></script>
+  <script src="myIcon.js"></script>
+  <script src="app.js"></script>
+  <!-- Page créée par Mikaël David - 2026 -->
+</body>
+
+</html>

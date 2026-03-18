@@ -1,0 +1,435 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+/* Style global de la page */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  background: #f5f6fa;
+  margin: 0;
+}
+
+/* Header */
+header {
+  width: 100%;
+  background: transparent;
+  transition: background 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0);
+  z-index: 1000;
+
+  transition: all 0.2s ease;
+}
+header .container {
+  padding: 15px 40px;
+  transition: all 0.2s ease;
+}
+/* Styles appliqués après scroll */
+body.scrolled header {
+  position: fixed;
+  top: 0;
+
+  /* glassmorphism */
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+body.scrolled header .container {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 5px 0;
+}
+body.scrolled header h1 {
+  display: none;
+}
+body.scrolled header .upload-btn {
+  font-size: 80%;
+  height: fit-content;
+  padding: 0;
+  margin-left: 40px;
+}
+
+body.scrolled header .upload-btn img {
+  width: 15%;
+}
+
+body.scrolled header #themeToggle {
+  position: relative;
+  top: 0;
+  margin-right: 40px;
+}
+
+body.scrolled main {
+  margin-top: 176px;
+}
+
+/* Main */
+main {
+  padding: 40px;
+  min-height: calc(100% - 320px);
+}
+
+/* Bouton upload */
+
+.upload-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 1%;
+  font-size: 100%;
+  line-height: 1;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 50em;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff4b2b, #ff0000);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.upload-btn img {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.upload-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Style pendant le drag & drop */
+
+.upload-btn.drag {
+  background: linear-gradient(135deg, #00b894, #00cec9);
+}
+
+/* Input file caché */
+
+#fileInput {
+  display: none;
+}
+
+/* Infos du fichier */
+
+#fileInfo {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+#fileInfo span {
+  font-weight: normal;
+}
+
+/* Aperçu GIF */
+
+#preview {
+  margin-top: 20px;
+}
+
+/* Contrôles du lecteur */
+
+#playerControls {
+  display: none;
+  justify-content: center;
+  max-width: 600px;
+  margin-top: 15px;
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+
+#playerControls button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  font-size: 18px;
+  line-height: 1;
+  font-weight: bold;
+
+  padding: 0;
+
+  border-radius: 50em;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+#playerControls button#prevFrame,
+#playerControls button#nextFrame {
+  color: black;
+  background: none;
+
+  width: 44px;
+  height: 44px;
+}
+#playerControls button#playPause {
+  color: white;
+  background: black;
+
+  width: 54px;
+  height: 54px;
+}
+
+/* effet hover */
+
+#playerControls button:hover {
+  transform: scale(110%);
+}
+
+#playerControls button#playPause:hover,
+#playerControls button#playPause:focus {
+  background: linear-gradient(135deg, #ff4b2b, #ff0000);
+}
+
+/* effet clic */
+
+#playerControls button:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* Liste des frames */
+
+#frames {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+/* Canvas des frames */
+
+canvas {
+  margin: 14px 14px 14px 0;
+}
+
+/* Boutons export */
+
+#captureBtn,
+#copyBtn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  background: #0984e3;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+#captureBtn:hover,
+#captureBtn:focus,
+#copyBtn:hover,
+#copyBtn:focus {
+  background: #0766af;
+}
+
+/* -------------------------
+TIMELINE CONTAINER
+------------------------- */
+
+#timelineContainer {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* -------------------------
+TIMELINE BASE
+------------------------- */
+
+#timeline {
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 100%;
+  height: 6px;
+
+  background: #444;
+
+  border-radius: 6px;
+
+  outline: none;
+
+  cursor: pointer;
+
+  transition: background 0.2s;
+}
+
+/* -------------------------
+TRACK (Chrome / Safari)
+------------------------- */
+
+#timeline::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 6px;
+}
+
+/* -------------------------
+THUMB (Chrome / Safari)
+------------------------- */
+
+#timeline::-webkit-slider-thumb {
+  -webkit-appearance: none;
+
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  background: #ff2a2a;
+
+  border: 2px solid white;
+
+  margin-top: -6px;
+
+  transition: transform 0.15s;
+}
+
+/* hover */
+
+#timeline::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* focus */
+
+#timeline:focus::-webkit-slider-thumb {
+  border-color: black;
+  outline: 1px solid white;
+}
+
+/* -------------------------
+FIREFOX
+------------------------- */
+
+#timeline::-moz-range-track {
+  height: 6px;
+  background: #444;
+  border-radius: 6px;
+}
+
+#timeline::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  background: #ff2a2a;
+
+  border: 2px solid white;
+
+  cursor: pointer;
+}
+
+/* focus */
+
+#timeline:focus::-moz-range-thumb {
+  border-color: black;
+  outline: 1px solid white;
+}
+
+/* -------------------------
+TIMELINE INFO
+------------------------- */
+
+#timelineInfo {
+  margin-top: 8px;
+
+  font-size: 13px;
+
+  color: #aaa;
+
+  text-align: right;
+}
+
+/* -------------------
+THEME CLAIR (default)
+------------------- */
+
+body {
+  background: #f5f6fa;
+  color: #222;
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+
+/* -------------------
+THEME SOMBRE
+------------------- */
+
+body.dark {
+  background: #121212;
+  color: #e5e5e5;
+}
+
+/* boutons player */
+
+body.dark #playerControls button#playPause {
+  background: #444;
+}
+body.dark #playerControls button#prevFrame,
+body.dark #playerControls button#nextFrame {
+  color: white;
+}
+
+#themeToggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #eee;
+
+  cursor: pointer;
+
+  font-size: 18px;
+}
+
+#myIcon path {
+  fill: rgb(187, 187, 187);
+  stroke: rgb(187, 187, 187);
+}
+body.dark #myIcon path {
+  fill: rgb(83, 83, 83);
+  stroke: rgb(83, 83, 83);
+}
+#themeToggle #myIcon path,
+#themeToggle #myIcon {
+  transition: all 2s;
+}
+#themeToggle:hover #myIcon {
+  transform: rotate(25deg) scale(120%);
+}
+#themeToggle:hover #myIcon path {
+  fill: rgb(83, 83, 83);
+  stroke: rgb(83, 83, 83);
+}
+body.dark #themeToggle:hover #myIcon path {
+  fill: rgb(187, 187, 187);
+  stroke: rgb(187, 187, 187);
+}
+
+body.dark #themeToggle {
+  background: #202020;
+}
+
+.signature {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #666;
+}
