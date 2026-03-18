@@ -3,7 +3,7 @@ const animation = lottie.loadAnimation({
   renderer: "svg",
   loop: false,
   autoplay: false,
-  path: "icons8-sun.json", // chemin vers ton fichier JSON
+  path: "assets/icons/icons8-sun.json", // chemin vers le fichier JSON
 });
 
 const icon = document.getElementById("myIcon");
